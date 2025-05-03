@@ -1,4 +1,4 @@
-﻿<script type="text/javascript">
+<script type="text/javascript">
         var gk_isXlsx = false;
         var gk_xlsxFileLookup = {};
         var gk_fileData = {};
@@ -65,7 +65,69 @@
       return gk_fileData[filename] || "";
     }
   </script>
+
+
+
+
+
+
+
   <style>
+
+
+    /* Botpress Chat Bubble Styling */
+    .bpw-floating-button {
+      background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffff, #ff00cc);
+      background-size: 400% 400%;
+      animation: rainbow 10s ease infinite;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #0ff, 0 0 30px #f0f;
+      animation: pulseBubble 2s infinite;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bpw-floating-button:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 25px #0ff, 0 0 50px #f0f;
+    }
+
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes pulseBubble {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.8; }
+    }
+
+    /* Ensure the chat bubble is positioned correctly */
+    #botpress-webchat {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     * {
       margin: 0;
       padding: 0;
@@ -1573,6 +1635,10 @@
 
     for (let i = 0; i < 30; i++) createFirefly();
   </script>
+  <div id="botpress-webchat"></div>
+
+  <script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2025/05/03/05/20250503055805-H7NZCZQ7.js"></script>
 </body>
 
 
