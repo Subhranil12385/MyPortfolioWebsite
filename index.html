@@ -2470,7 +2470,7 @@ color: #fff
     window.addEventListener('scroll', function() {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 1.2;
+      const scrolled = (winScroll / height) * .9;
       document.getElementById('progress-bar').style.width = scrolled + '%';
     });
   </script>
