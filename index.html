@@ -325,7 +325,6 @@
       box-shadow: 0 0 30px rgba(0, 255, 255, 1);
     }
 
-
     .project-card:hover .project-description,
     .article-card:hover .article-description,
     .achievement-card:hover .achievement-description,
@@ -478,18 +477,25 @@
 
 
     .social-icons {
-      margin: 0.5rem 0;
+
       display: flex;
       justify-content: center;
       gap: 0.5rem;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.5s ease; box-shadow 0.3s ease;
+  font-size: 32px; /* Increase this number to make icons larger */
+  margin: 50 15px;
+  color: cyan;
+
     }
 
 
     .social-icons a {
       color: #0ff;
-      font-size: 1.2rem;
+  font-size: 100px; /* Increase this number to make icons larger */
+  width: 60px;
+  height: 60px;
       transition: transform 0.3s;
+  margin: 50 15px;
     }
 
 
@@ -563,8 +569,17 @@
       font-size: 0.9rem;
       line-height: 1.5;
       opacity: 0;
-      animation: fadeInText 1s ease-in forwards;
-      transition: opacity 0.5s ease;
+      animation: fadeInText 2s ease-in forwards;
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(0, 0, 139, 0.2));
+      border: none;
+      backdrop-filter: blur(5px);
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1rem 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
     }
 
 
@@ -575,6 +590,7 @@
 
     .about-me-right {
       color: #ff4500;
+
     }
 
 
@@ -616,8 +632,9 @@
 
 
     .home-text .name {
+      font-size: 3rem;
       font-weight: bold;
-      color: #ff4500;
+      color: #ff0000;
     }
 
 
@@ -819,17 +836,7 @@
         font-size: 2rem;
         text-shadow: 0 0 20px #fff;
       }
-      nav {
-        padding: 1rem;
-      }
-      nav a {
-        margin: 0 1.5rem;
-        font-size: .9rem;
-      }
-      nav a::after {
-        height: 2px;
-        bottom: -5px;
-      }
+
       section {
         padding: 4rem 2rem;
         max-width: 1200px;
@@ -958,29 +965,561 @@
         grid-template-columns: repeat(3, 1fr);
       }
     }
+
+
+    /* Progress bar styling */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 5px;
+      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+      z-index: 1000;
+      transition: width 0.2s ease-out;
+    }
+
+
   </style>
+
+
+
+<style>
+  /* Hide the default cursor */
+  * {
+    cursor: none !important;
+  }
+
+  /* Custom cursor styles */
+  .custom-cursor {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background-color: #00ffcc; /* Bright cyan */
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease, background-color 0.2s ease, width 0.2s ease, height 0.2s ease;
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5), 0 0 20px rgba(0, 255, 204, 0.3); /* Glow effect */
+  }
+
+  /* Outer ring for cursor */
+  .custom-cursor::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 2px solid rgba(0, 255, 204, 0.5);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.7;
+  }
+
+  /* Hover effect on interactive elements */
+  a:hover ~ .custom-cursor,
+  button:hover ~ .custom-cursor,
+  .custom-cursor.hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: #ff007a; /* Pink on hover */
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Adjust ring on hover */
+  a:hover ~ .custom-cursor::after,
+  button:hover ~ .custom-cursor::after,
+  .custom-cursor.hover::after {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+
+  /* Ripple effect styles */
+  .ripple {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: rgba(0, 255, 204, 0.4); /* Semi-transparent cyan */
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: ripple-effect 0.6s ease-out forwards;
+    z-index: 9998; /* Below cursor but above content */
+  }
+
+  /* Keyframe animation for ripple */
+  @keyframes ripple-effect {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(10);
+      opacity: 0;
+    }
+  }
+</style>
+
+
+
+
+  <title>Education Timeline</title>
+  <style>
+
+    .education-section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .education-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .education-section p.subtitle {
+      color: #555;
+      margin-bottom: 40px;
+    }
+
+    .timeline-container {
+      position: relative;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .timeline-arrow {
+      display: flex;
+      position: relative;
+      height: 60px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      border-radius: 30px;
+      margin-bottom: 60px;
+    }
+
+    .timeline-arrow:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: 30px solid transparent;
+      border-bottom: 30px solid transparent;
+      border-left: 30px solid #0072ff;
+    }
+
+    .timeline-step {
+      flex: 1;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .timeline-step:not(:last-child) {
+      border-right: 2px solid rgba(255,255,255,0.5);
+    }
+
+    .timeline-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .timeline-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      width: 33%;
+    }
+
+    .timeline-line {
+      width: 2px;
+      height: 60px;
+      background: linear-gradient(to bottom, red, orange, yellow, green, blue, indigo, violet);
+      margin-top: -40px;
+      animation: glow 2s infinite alternate;
+    }
+
+    .timeline-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #00c6ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 30px;
+      margin-top: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-icon:hover {
+      transform: scale(1.2);
+    }
+
+    .timeline-card {
+      background: rgba(55, 55, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      border: 2px solid;
+      border-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet) 1;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
+      width: 90%;
+      color: #333;
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timeline-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .timeline-card h4 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+color: #fff
+    }
+
+    .timeline-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 5px cyan); }
+      to { filter: drop-shadow(0 0 15px cyan); }
+    }
+  </style>
+
+
+
+
+
+
+
+
+
+
+
+
+  <style>
+
+
+    nav {
+
+      padding: 1rem;
+
+    }
+
+    nav a {
+      position: relative;
+      text-decoration: none;
+      color: white;
+      font-size: .9rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0px;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    nav a.active::after {
+      transform: scaleX(1);
+    }
+
+  </style>
+
+
+  <style>
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card img {
+  width: 100%;
+  display: block;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover img {
+  opacity: 1;
+  filter: blur(0.1px);
+  transform: scale(1.1);
+}
+
+.project-description {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2rem;
+  background: rgba(0, 20, 0, 0.8); /* glassy overlay */
+  backdrop-filter: blur(6px);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.project-card:hover .project-description {
+  opacity: 1;
+}
+
+
+
+
+
+/* Remove the retracting behavior */
+.project-description {
+  max-height: none !important;
+  padding-top: 0 !important;
+  overflow: visible !important;
+  opacity: 0;
+}
+
+
+.project-card.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.filter-button {
+  border: none;
+  background: none;
+  color: cyan;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.filter-button.active::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  background: cyan;
+  width: 100%;
+  bottom: -4px;
+  left: 0;
+}
+
+
+
+
+
+
+
+  </style>
+
+
+
+
+
+ <style>
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 40px;
+  background-color: #0f1a1a;
+}
+
+.stat-card {
+  background: #112222;
+  border-radius: 20px;
+  padding: 30px 40px;
+  text-align: center;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  width: 160px;
+  position: relative;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  cursor: pointer;
+}
+
+.stat-card .number {
+  font-size: 40px;
+  font-weight: bold;
+  color: #ff4ecb;
+}
+
+.stat-card .plus, .stat-card .percent {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff4ecb;
+}
+
+.stat-card p {
+  margin: 10px 0 0;
+  color: #ccc;
+  font-size: 16px;
+}
+
+
+.stat-card:hover {
+  transform: scale(1.2);
+  box-shadow: 0 8px 25px rgba(255, 0, 200, 0.5);
+}
+
+
+#home-image-container {
+  position: relative;
+}
+
+  </style>
+
+
+
+
+
+
+
+
+
+  <style>
+
+.rgb-ring {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: pulse 2s infinite;
+  border-style: solid;
+  border-width: 2px;
+  background: transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.rgb-ring.clicked {
+  animation: pulseFast 0.1s infinite, bounce 0.3s ease;
+  transform: scale(1.5) translateY(-15px);
+  box-shadow: 0 0 25px 10px currentColor, 0 0 40px currentColor;
+}
+
+@keyframes pulseFast {
+  0% { transform: scale(1.2); opacity: 0.9; }
+  50% { transform: scale(1.5); opacity: 1; }
+  100% { transform: scale(1.2); opacity: 0.9; }
+}
+
+@keyframes bounce {
+  0%   { transform: translateY(0) scale(1.2); }
+  50%  { transform: translateY(-20px) scale(1.4); }
+  100% { transform: translateY(0) scale(1.2); }
+}
+
+
+  </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+        .typewriter {
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .typewriter::after {
+            content: "|";
+            position: absolute;
+            right: -15px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
 </head>
 
 
 <body>
+  <!-- Rainbow Progress Bar -->
+  <div id="progress-bar"></div>
+
+
   <audio id="hover-sound" src=""></audio>
   <div id="circuit-glow"></div>
+<!-- Add cursor element to the body -->
+<div class="custom-cursor"></div>
 
 
   <header id="header"><span class="header-text">Welcome to My Personal Showcase</span></header>
 
 
   <nav id="nav">
-    <a href="#home">🏡Home</a>
-    <a href="#about">👨‍🔧About Me</a>
-    <a href="#qualifications">🏫Qualifications</a>
-    <a href="#projects">🔬Projects</a>
-    <a href="#research">🔎Researches</a>
-    <a href="#articles">🖋️Articles</a>
-    <a href="#internships">🧑🏻‍💻Internships</a>
-    <a href="#certifications">📜Certifications</a>
-    <a href="#achievements">📜Achievements</a>
-    <a href="#contact">📞Contact Me</a>
+    <a href="#home" class="nav-link">🏡Home</a>
+    <a href="#about" class="nav-link">👨‍🔧About Me</a>
+    <a href="#qualifications" class="nav-link">🏫Qualifications</a>
+    <a href="#projects" class="nav-link">🔬Projects</a>
+    <a href="#research" class="nav-link">🔎Researches</a>
+    <a href="#articles" class="nav-link">🖋️Articles</a>
+    <a href="#internships" class="nav-link">🧑🏻‍💻Internships</a>
+    <a href="#certifications" class="nav-link">📜Certifications</a>
+    <a href="#achievements" class="nav-link">📜Achievements</a>
+    <a href="#contact" class="nav-link">📞Contact Me</a>
   </nav>
 
 
@@ -988,25 +1527,63 @@
     <div class="home-content" data-aos="fade-up" id="home-content">
       <div class="home-text" id="home-text">
         <p class="rainbow-glow">Hi,</p>
-        <p class="rainbow-glow">I'm <span class="name">Subhranil</span>.</p>
+        <p class="rainbow-glow">I'm <span class="name"> Subhranil. </span></p>
+
+    <p class="typewriter" id="typewriter"></p>
+
         <p class="rainbow-glow">B.Tech Graduate, 2024</p>
         <p class="rainbow-glow job-seek">I am a recent engineering graduate actively seeking entry-level opportunities in Core, IT and Service sectors. Please, feel free to contact me if you are looking for a passionate and dedicated fresher engineer proficient in Electronics and Telecommunication fields.</p>
         <a href="#contact" class="chat-link">Let's connect!📞</a>
       </div>
       <div>
-        <div class="home-image-container" id="home-image-container">
-          <div class="home-image" id="home-image"></div>
-          <div class="rgb-ring red"></div>
-          <div class="rgb-ring green"></div>
-          <div class="rgb-ring blue"></div>
-          <div class="rgb-ring yellow"></div>
-        </div>
+
+
+
+
+<! -- Photo and Rings -->
+<div class="home-image-container" id="home-image-container">
+  <div class="home-image" id="home-image"></div>
+<div class="rgb-ring red" id="ring-red" style="border-color: red;"></div>
+<div class="rgb-ring green" id="ring-green" style="border-color: lime;"></div>
+<div class="rgb-ring blue" id="ring-blue" style="border-color: cyan;"></div>
+<div class="rgb-ring yellow" id="ring-yellow" style="border-color: yellow;"></div>
+
+</div>
+
         <div class="home-buttons">
           <a href="https://drive.google.com/drive/folders/1KeD4qQYPb1qu4TuyQo47jufOeAzHNrHc" class="skill-badge" style="margin: 0.5rem 0; display: block; width: fit-content;" data-aos="fade-up" id="cv-link">Download CV</a>
         </div>
       </div>
     </div>
   </section>
+
+
+
+
+
+<div class="stats-container">
+  <div class="stat-card">
+    <span class="number" data-target="15">0</span><span class="plus">+</span>
+    <p>Projects</p>
+  </div>
+  <div class="stat-card">
+    <span class="number" data-target="5">0</span><span class="plus">+</span>
+    <p>Researches</p>
+  </div>
+  <div class="stat-card">
+    <span class="number" data-target="5">0</span><span class="plus">+</span>
+    <p>Internships</p>
+  </div>
+  <div class="stat-card">
+    <span class="number" data-target="20">0</span><span class="plus">+</span>
+    <p>Certificates</p>
+  </div>
+  <div class="stat-card">
+    <span class="number" data-target="10">0</span><span class="plus">+</span>
+    <p>Skills</p>
+  </div>
+  </div>
+</div>
 
 
   <section id="about" data-aos="fade-up">
@@ -1016,38 +1593,97 @@
         <h3>Something about professional me:</h3>
         <p>Hi there! My name is Subhranil Dey, an enthusiastic and detail-driven engineer with a solid background in both electronics and telecommunication engineering. I thrive on creating productive solutions with hardware and software—whether it's crafting smart IoT systems, or developing user-friendly web and mobile interfaces. With hands-on experience in exciting projects like Mobile Controlled Garbage Truck using Raspberry Pi, Drone Surveillance System using Machine Learning and Android and Web App Development using AI, I love tackling complex challenges with a spark of creativity and simplification. I’m all about continuous learning, clean design, and innovation that truly makes an impact. When I’m not busy coding or prototyping, you’ll catch me diving into the latest tech trends, optimizing ideas, or working personal projects that redefine limits. Let’s collaborate and create extraordinary together!</p>
       </div>
-      <div class="about-me-right" id="about-right">
+      <div class="about-me-right" data-aos="zoom-in" id="about-right"> 
         <h3>And a little bit of personal me:</h3>
         <p>I am a fresher with a creative edge and a keen eye for detail. I was born and brought up in Lumding, Assam—a small town that shaped my curiosity and drive. I completed my schooling there before pursuing my B.Tech in Electronics and Telecommunication Engineering from Assam Engineering College, Guwahati. Currently, I’m further sharpening my technical skills like App development and Website building. I love leveraging the power of Artificial Intelligence into my projects, finding easy workarounds using Prompt engineering and Vibe Coding. Photography isn’t just a hobby for me; it’s how I see patterns, perspectives, and stories. You’ll find me chasing sunsets, editing shots, shooting videos, writing articles or planning the next big project.</p>
+      </div>
+    </div>
+
+
+
+
+
+
+  </section>
+
+
+
+
+
+  <section id="qualifications" class="qualifications" data-aos="fade-up">
+    <h2 class="rainbow-glow" data-aos="fade-up" id="qualifications-title">My Qualifications🏫</h2>
+  <section class="education-section" data-aos="fade-up" >
+    <h2>EDUCATION TIMELINE </h2>
+    <p class="subtitle">The Foundation, The Journey, To What I Am data-aos="fade-up" </p>
+
+    <div class="timeline-container" data-aos="fade-up" >
+      <div class="timeline-arrow" data-aos="fade-up" >
+        <div class="timeline-step">2018 </div>
+        <div class="timeline-step">2020 </div>
+        <div class="timeline-step">2024 </div>
+      </div>
+
+      <div class="timeline-row">
+        <div class="timeline-node">
+          <div class="timeline-line" data-aos="fade-up" ></div>
+          <div class="timeline-icon">✏️</div>
+          <div class="timeline-card">
+            <h4>Class X</h4>
+            <p>Pranabananda Vidyamandir (CBSE), Lumding</p>
+            <p>Percentage: 92.4%</p>
+      <div class="card-buttons">
+        <a href="https://drive.google.com/file/d/12pVj4IXB9sMNAq3g_0Y3hcRMjd8DTYtt/view?usp=drivesdk" target="_blank"><button class="button">View Marksheet</button></a>
+        <a href="https://drive.google.com/file/d/12qA6rJwh09HH3QlWIjg2njVyOVXYfd0s/view?usp=drivesdk" target="_blank"><button class="button">View Pass Certificate</button></a>
+      </div>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-line" data-aos="fade-up" ></div>
+          <div class="timeline-icon">🖊️</div>
+          <div class="timeline-card">
+            <h4>Class XII</h4>
+            <p>Pranabananda Vidyamandir (CBSE), Lumding</p>
+            <p>Percentage: 88.2%</p>
+      <div class="card-buttons">
+        <a href="https://drive.google.com/file/d/149uScoGt87fsjPZniq_ai7lmg9b0GqEp/view?usp=drivesdk" target="_blank"><button class="button">View Marksheet</button></a>
+        <a href="https://drive.google.com/file/d/14hryQA8qoAGjp77LrHMFd1nYbjLWbtEY/view?usp=drivesdk" target="_blank"><button class="button">View Pass Certificate</button></a>
+      </div>
+          </div>
+        </div>
+
+        <div class="timeline-node" >
+          <div class="timeline-line" data-aos="fade-up" ></div>
+          <div class="timeline-icon">🖋️</div>
+          <div class="timeline-card">
+            <h4>B.Tech in ETE</h4>
+            <p>Assam Engineering College (ASTU), Guwahati</p>
+            <p>Percentage: 83.6%</p>
+      <div class="card-buttons">
+        <a href="https://drive.google.com/file/d/1NSF-VL7Vf7RmM78fW9QIfPmULe6KPjJe/view?usp=drivesdk" target="_blank"><button class="button">View Marksheet</button></a>
+        <a href="https://drive.google.com/file/d/1NRD1NNEcGz13O7PAakl3oDcKqB7jBysb/view?usp=drivesdk" target="_blank"><button class="button">View Pass Certificate</button></a>
+      </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
 
-  <section id="qualifications" class="qualifications" data-aos="fade-up">
-    <h2 class="rainbow-glow" data-aos="fade-up" id="qualifications-title">My Qualifications🏫</h2>
+
+
+     <h2 class="rainbow-glow" data-aos="fade-up" id="qualifications-title">Other Competitive Exams 📊</h2>
+
     <div class="qual-item" data-aos="fade-up">
-      <p id="qual1"><strong>Class X:</strong> Pranabananda Vidyamandir (CBSE), Lumding, 2018, Percentage: 92.4%</p>
+      <p id="qual4"><strong>ICAT 2025:</strong> Score: 63, AIR #663 </p>
       <div class="card-buttons">
-        <a href="https://drive.google.com/file/d/12pVj4IXB9sMNAq3g_0Y3hcRMjd8DTYtt/view?usp=drivesdk" target="_blank"><button class="button">View Marksheet</button></a>
-        <a href="https://drive.google.com/file/d/12qA6rJwh09HH3QlWIjg2njVyOVXYfd0s/view?usp=drivesdk" target="_blank"><button class="button">View Pass Certificate</button></a>
+
+        <a href="https://drive.google.com/open?id=1dvAc3O2MpV3LeKERhAxyq_fu-jOCVVSr&usp=drive_copy"><button class="button"> View Result Screenshot </button></a>
+
       </div>
     </div>
-    <div class="qual-item" data-aos="fade-up">
-      <p id="qual2"><strong>Class XII:</strong> Pranabananda Vidyamandir (CBSE), Lumding, 2020, Percentage: 88.2%</p>
-      <div class="card-buttons">
-        <a href="https://drive.google.com/file/d/149uScoGt87fsjPZniq_ai7lmg9b0GqEp/view?usp=drivesdk" target="_blank"><button class="button">View Marksheet</button></a>
-        <a href="https://drive.google.com/file/d/14hryQA8qoAGjp77LrHMFd1nYbjLWbtEY/view?usp=drivesdk" target="_blank"><button class="button">View Pass Certificate</button></a>
-      </div>
-    </div>
-    <div class="qual-item" data-aos="fade-up">
-      <p id="qual3"><strong>Graduation:</strong> B.Tech in ETE, AEC (ASTU), Guwahati, 2020–2024, Percentage: 83.6%</p>
-      <div class="card-buttons">
-        <a href="https://drive.google.com/file/d/1NSF-VL7Vf7RmM78fW9QIfPmULe6KPjJe/view?usp=drivesdk" target="_blank"><button class="button">View Marksheet</button></a>
-        <a href="https://drive.google.com/file/d/1NRD1NNEcGz13O7PAakl3oDcKqB7jBysb/view?usp=drivesdk" target="_blank"><button class="button">View Pass Certificate</button></a>
-      </div>
-    </div>
- 
+
+
     <div class="qual-item" data-aos="fade-up">
       <p id="qual4"><strong>TCS iON NQT:</strong> Score: 78.53, Subject: Cognitive</p>
       <div class="card-buttons">
@@ -1073,6 +1709,19 @@
               
 	</div>
     </div>
+
+
+
+   <div class="qual-item" data-aos="fade-up">
+      <p id="qual4"><strong>CEE 2020:</strong> Score: 25.85, Percentile: 68.27</p>
+      <div class="card-buttons">
+        <a href="https://drive.google.com/file/d/12VTQbDBl5s4PpRTs6imKoSVhMjYgtsrt/view" target="_blank"><button class="button">View Rankcard JPG</button></a>
+              
+	</div>
+    </div>
+
+
+
 
 
 
@@ -1129,99 +1778,155 @@
 
   <section id="projects" data-aos="fade-up">
     <h2 class="rainbow-glow" data-aos="fade-up" id="projects-title">My Projects🔬</h2>
+
+
+<div style="text-align:center; margin-bottom: 1rem;">
+  <button class="button" onclick="filterProjects('ALL')">All</button>
+  <button class="button" onclick="filterProjects('Electronics')">ETE</button>
+  <button class="button" onclick="filterProjects('IT')">IT</button>
+
+</div>
+
+
+
     <div class="project-grid">
-      <div class="project-card" data-aos="zoom-in" id="proj9">
+      <div class="project-card" category="Electronics" data-aos="zoom-in" id="proj1">
+        <img src="https://picsum.photos/300/200?random=1">
         <h3>12V to 220V Inverter using 555 Timer IC</h3>
         <div class="project-description">Designed and built an inverter circuit to convert 12V DC to 220V AC using a 555 Timer IC, transformers, and MOSFETs, suitable for powering small household appliances.</div>
         <div class="card-buttons">
           <a href="https://drive.google.com/drive/folders/1X9hTEFJy9gxP_k7CGU7ZhjTz4gk2nbA7" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj10">
+
+
+      <div class="project-card" category="Electronics" data-aos="zoom-in" id="proj2">
+        <img src="https://picsum.photos/300/200?random=2">
         <h3>Burglar Alarm using PIR Sensor</h3>
         <div class="project-description">Developed a security system using a PIR sensor to detect motion, triggering an alarm with a buzzer for real-time monitoring.</div>
         <div class="card-buttons">
           <a href="https://drive.google.com/drive/folders/1S0De6ygzbTHz6Of-LZsvSNIOKgq2_0K9" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj11">
+
+
+
+      <div class="project-card"  category="Electronics" data-aos="zoom-in" id="proj3">
+        <img src="https://picsum.photos/300/200?random=3">
         <h3>Design and Implementation of Smart Home using Cisco Packet Tracer Simulator</h3>
         <div class="project-description">Simulated a smart home network with IoT devices like smart lights, thermostats, and security systems, configured using Cisco Packet Tracer for automation and remote control.</div>
         <div class="card-buttons">
           <a href="https://drive.google.com/file/d/1uQsWwT5PukU5xiFTEONUXB0jmbQPMLXQ/view?usp=drivesdk" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj4">
+
+
+      <div class="project-card" category="Electronics"  data-aos="zoom-in" id="proj4">
+        <img src="https://picsum.photos/300/200?random=4">
         <h3>Electronic Digital Weight Machine using AVR Microcontroller</h3>
         <div class="project-description">Designed a weighing machine with over 99% accuracy for weights up to 10 pounds, using Arduino, Arduino IDE, LM741 Op-Amp, Instrumentation Amplifier, and Proteus.</div>
         <div class="card-buttons">
           <a href="https://drive.google.com/drive/folders/14R-L0eFj7JbXYp0uIEFrxjnd3vgMiIRP" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj4">
+
+
+      <div class="project-card"  category="Electronics"  data-aos="zoom-in" id="proj5">
+        <img src="https://picsum.photos/300/200?random=5">
         <h3>Exploring different IoT platforms to build a Weather Station using ESP8266 and DHT11</h3>
         <div class="project-description">Compared 6 different IoT cloud data logging and visualisation platforms to host the Temperature and Humidity data from DHT11 through ESP8266.</div>
         <div class="card-buttons">
           <a href="https://drive.google.com/file/d/1lUVPHnEP1ShLZ69ZrWiRzfV8KcaN8vwc/view?usp=drive_link" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj5">
+
+
+
+      <div class="project-card"   category="IT" data-aos="zoom-in" id="proj6">
+        <img src="https://picsum.photos/300/200?random=6">
         <h3>Stroke Prediction using Machine Learning</h3>
         <div class="project-description">Built an ML algorithm using 6 supervised learning algorithms and 5 matrices, utilizing Jupyter Notebook, Google Colab, and Kaggle (July-Aug 2022).</div>
         <div class="card-buttons">
-          <a href="https://drive.google.com/drive/folders/12GdA4SsXQcpOiVpyoj-KyELq_1twgA7G" target="_blank"><button class="button">View Project</button></a>
+          <a href="https://drive.google.com/drive/folders/12GdA4SsXQcpOiVpyoj-KyELq_1twgA7G" target="_blank" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj2">
+
+
+
+
+
+      <div class="project-card"   category="IT" data-aos="zoom-in" id="proj7">
+        <img src="https://picsum.photos/300/200?random=7">
         <h3>Drone Detection using Machine Learning</h3>
         <div class="project-description">Developed the backbone model for a larger project with a team of 8 members, prepared and annotated a custom dataset of over 3000 images using Roboflow and CVAT, tailored AlexNet for object detection and localization, achieving a validation accuracy of 82.22%.</div>
         <div class="card-buttons">
           <a href="https://drive.google.com/drive/folders/12-jmjl8qr26Z35ZvYQ7JWKnsbt0bdxeZ" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj1">
+
+
+      <div class="project-card"  category="Electronics"  data-aos="zoom-in" id="proj8">
+        <img src="https://picsum.photos/300/200?random=8">
         <h3>Design Of AlGaN/GaN Based HEMT for Low Noise and High-Speed Applications</h3>
         <div class="project-description">Developed a High Electron Mobility Transistor using Silvaco TCAD 2018, studying the effect of variations of 6 electrical and physical parameters on drain current, attaining a peak drain current of around 1.2A, higher than previous studies.</div>
         <div class="card-buttons">
           <a href="https://drive.google.com/drive/folders/1kqLEFXccXrcVNyLdAaYr_cP5xbw6J4Ku" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj12">
+
+
+      <div class="project-card"   category="IT"  data-aos="zoom-in" id="proj9">
+        <img src="https://picsum.photos/300/200?random=9">
         <h3>Notepad Web App using Replit</h3>
         <div class="project-description">Created a web-based notepad application using Replit, allowing users to write, save, and edit text with a simple and intuitive interface.</div>
         <div class="card-buttons">
           <a href="https://youtu.be/Ok-btNzfR5c?si=JrZV5SrGLB_aqLFd" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj13">
+
+
+      <div class="project-card"  category="IT"  data-aos="zoom-in" id="proj10">
+        <img src="https://picsum.photos/300/200?random=10">
         <h3>Notepad Android App using Android Studio</h3>
         <div class="project-description">Developed an Android notepad app using Android Studio, enabling users to create, edit, and save notes with a clean and intuitive design.</div>
         <div class="card-buttons">
           <a href="https://youtu.be/HIcIEO5XuEM?si=2qHx5oR-HUF9nAuX" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj3">
+
+
+      <div class="project-card"  category="Electronics" data-aos="zoom-in" id="proj11">
+        <img src="https://picsum.photos/300/200?random=11">
         <h3>Mobile Controlled Garbage Truck</h3>
         <div class="project-description">Built a garbage truck using household objects, successfully tested in over 5 real-world scenarios, utilizing Arduino Mega, Raspberry Pi-3b, Servo Motors, L283D Motor Drivers, and Proteus.</div>
         <div class="card-buttons">
           <a href="https://drive.google.com/drive/folders/1Q3c8hV91rpmAI1U-L-kBH6OaGPZAH2VW?usp=sharing" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj6">
+
+
+      <div class="project-card"  category="IT"  data-aos="zoom-in" id="proj12">
+        <img src="https://picsum.photos/300/200?random=12">
         <h3>Predicting Heart Disease using Machine Learning</h3>
-        <div class="project-description">Implemented supervised learning algorithms, achieving accuracy of 64.59%, precision of 63.98%, and recall of 68.88%, using various visualization techniques (July-Aug 2021).</div>
+        <div class="project-description">Implemented supervised learning algorithms, achieving accuracy of 64.59%, precision of 63.98%, and recall of 68.88%, using various visualization techniques.</div>
         <div class="card-buttons">
           <a href="https://drive.google.com/drive/folders/1E11i7ptO23XzwjsqnTfGc0cR-Ln8vGUa?usp=sharing" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj7">
+
+
+      <div class="project-card" data-aos="zoom-in" id="proj13">
+        <img src="https://picsum.photos/300/200?random=13">
         <h3>Effect of Covid-19 in Our Daily Lifestyle</h3>
         <div class="project-description">Conducted a comprehensive study on the effect of the Covid-19 pandemic in India, surveying over 150 people and NGOs, analyzing shortcomings (July-Aug 2021).</div>
         <div class="card-buttons">
           <a href="https://drive.google.com/file/d/1c0MBBpIIltqB3rO8Ng1_9qf8Q7I1yYiI/view?usp=drivesdk" target="_blank"><button class="button">View Report</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj8">
+
+
+      <div class="project-card"  category="IT"  data-aos="zoom-in" id="proj14">
+        <img src="https://picsum.photos/300/200?random=14">
         <h3>Firebase Studio Web Apps</h3>
         <div class="project-description">A studio of web applications built using Firebase hosting, authentication, and Firestore backend technologies.</div>
         <div class="card-buttons">
@@ -1230,21 +1935,30 @@
           <a href="https://youtube.com/shorts/5s-_NkNXlaY?si=loWD-vfD4WTSbaWi" target="_blank"><button class="button">PoemPic</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj15">
+
+
+      <div class="project-card"  category="Electronics" data-aos="zoom-in" id="proj15">
+        <img src="https://picsum.photos/300/200?random=15">
         <h3>Smart Street Light Automation using Arduino, LDR and IR Proximity Sensor</h3>
         <div class="project-description">Developed an automated street lighting system using Arduino, LDR, and IR proximity sensors to optimize energy usage by adjusting light intensity based on ambient light and motion detection.</div>
         <div class="card-buttons">
           <a href="https://youtube.com/shorts/uH-hQUURUmk?si=6MYhsc11UKUL6AOS" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj16">
+
+
+      <div class="project-card"  category="Electronics" data-aos="zoom-in" id="proj16">
+        <img src="https://picsum.photos/300/200?random=16">
         <h3>Home Decor Lighting with ESP8266, Blynk and IR Remote</h3>
         <div class="project-description">Created an IoT-based smart lighting system using ESP8266, Blynk app, and IR remote to control decorative lighting elements, enhancing user ambiance and control.</div>
         <div class="card-buttons">
           <a href="https://youtube.com/shorts/pIV6GmsuJ70?si=fTUvkQAyylNk1NZI" target="_blank"><button class="button">View Project</button></a>
         </div>
       </div>
-      <div class="project-card" data-aos="zoom-in" id="proj14">
+
+
+      <div class="project-card"  category="IT"  data-aos="zoom-in" id="proj17">
+        <img src="https://picsum.photos/300/200?random=17">
         <h3>My Portfolio Website using Vibe Coding</h3>
         <div class="project-description">Built a personal portfolio website showcasing projects, skills, and achievements using Vibe Coding techniques for a dynamic and visually appealing design.</div>
         <div class="card-buttons">
@@ -1253,6 +1967,17 @@
       </div>
     </div>
   </section>
+
+
+
+
+
+
+
+
+
+
+
 
 
   <section id="research" data-aos="fade-up">
@@ -1379,8 +2104,33 @@
           <a href="https://www.researchgate.net/publication/386324981_From_Drawer_to_Dashboards_A_Pragmatic_Guide_to_Smart_Engineering_-A_Life_Lesson_from_ESP8266_A_Journey_Beyond_Perfection" target="_blank"><button class="button">Read Article</button></a>
         </div>
       </div>
+
+
+
+      <div class="article-card" data-aos="zoom-in" id="art10">
+        <h3>Recruitment Strategies and Study Material for Tata Semiconductor Plant, Assam</h3>
+        <div class="article-description"></div>
+        <div class="card-buttons">
+          <a href="https://www.researchgate.net/publication/391444536_Recruitment_Strategies_and_Study_Material_for_Tata_Semiconductor_Plant_Assam" target="_blank"><button class="button">Read Article</button></a>
+        </div>
+      </div>
+
+
+
+
+      <div class="article-card" data-aos="zoom-in" id="art10">
+        <h3>Bolt Vs Lovable - Who Can Redesign Better?</h3>
+        <div class="article-description"></div>
+        <div class="card-buttons">
+          <a href="https://www.researchgate.net/publication/391849450_Bolt_Vs_Lovable_-_Who_Can_Redesign_Better" target="_blank"><button class="button">Read Article</button></a>
+        </div>
+      </div>
+	</div>
     </div>
   </section>
+
+
+
 
 
   <section id="internships" data-aos="fade-up">
@@ -1510,6 +2260,9 @@
       <a href="https://drive.google.com/open?id=1E7w6jwx8jG4skgNmHwDEVyzlNV_YwKFl&usp=drive_copy" target="_blank" class="skill-badge">Concept of Bluetooth Robot and it's Creation</a>
       <a href="https://drive.google.com/open?id=13re-zX9DGlKClXfL-AbyvbeYZ7_3BZfX&usp=drive_copy" target="_blank" class="skill-badge">Hybrid Drones Design and Applications</a>
       <a href="https://drive.google.com/open?id=1JmnC8ZGqdwjus1KOitpEhupX6H9oUhPs&usp=drive_copy" target="_blank" class="skill-badge">IoT Technology</a>
+      <a href="https://drive.google.com/file/d/1ce_iCx8AHfpGJVl2ee_IUmkEjxGHYhV1/view" target="_blank" class="skill-badge">Generative AI Mastermind By Outskill</a>
+<a href = "https://drive.google.com/open?id=1e1Y4trWoq7YnBmqTEkcsC97jSFxd6X0Z&usp=drive_copy" target="_blank" class="skill-badge">ICAT Participation Certificate</a>
+
     </div>
   </section>
 
@@ -1564,6 +2317,12 @@
       backdrop-filter: blur(4px);
     color: white;
 }
+
+#home h2 {
+    font-size: 3em;
+  }
+
+
 </style>
 
 
@@ -1661,6 +2420,290 @@
 
   <script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
   <script src="https://files.bpcontent.cloud/2025/05/03/05/20250503055805-H7NZCZQ7.js"></script>
+
+
+
+<!-- JavaScript for cursor and ripple effect -->
+<script>
+  const cursor = document.querySelector('.custom-cursor');
+
+  // Update cursor position
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = `${e.clientX}px`;
+    cursor.style.top = `${e.clientY}px`;
+  });
+
+  // Add hover effect for interactive elements
+  const interactiveElements = document.querySelectorAll('a, button, input, textarea');
+  interactiveElements.forEach((el) => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('hover');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('hover');
+    });
+  });
+
+  // Create ripple effect on click
+  document.addEventListener('click', (e) => {
+    const ripple = document.createElement('div');
+    ripple.classList.add('ripple');
+    ripple.style.left = `${e.clientX}px`;
+    ripple.style.top = `${e.clientY}px`;
+    document.body.appendChild(ripple);
+
+    // Remove ripple after animation
+    ripple.addEventListener('animationend', () => {
+      ripple.remove();
+    });
+  });
+</script>
+
+
+
+
+
+
+
+  <script>
+    // JavaScript for scroll-based progress bar
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 1.2;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+  </script>
+
+
+
+
+
+ <script>
+    const navLinks = document.querySelectorAll(".nav-link");
+    const sections = document.querySelectorAll("section");
+
+    function activateLinkOnScroll() {
+      let currentSectionId = "";
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.offsetHeight;
+        if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+          currentSectionId = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${currentSectionId}`) {
+          link.classList.add("active");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", activateLinkOnScroll);
+    window.addEventListener("load", activateLinkOnScroll);
+  </script>
+
+
+
+
+
+
+
+
+<script>
+// for KPI counter card
+
+  const counters = document.querySelectorAll('.number');
+  const speed = 2000; // lower = faster
+
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const increment = target / speed;
+
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(updateCount, 100);
+      } else {
+        counter.innerText = target;
+      }
+    };
+
+    updateCount();
+  });
+</script>
+
+
+
+
+
+
+// Rings
+<script>
+const ringIds = ["ring-red", "ring-green", "ring-blue", "ring-yellow"];
+
+ringIds.forEach(id => {
+  const ring = document.getElementById(id);
+
+  ring.addEventListener("click", () => {
+    ring.classList.add("clicked");
+
+    // Remove after animation
+    setTimeout(() => {
+      ring.classList.remove("clicked");
+    }, 1000);
+  });
+});
+</script>
+
+
+
+
+
+    <script>
+        const typewriter = document.getElementById('typewriter');
+        const texts = [
+'Taglines to Ignore',
+'⬛ Electronics Engineer, Crafting Solutions Innovatively', 
+'⬛ B.Tech ETE Grad | Data-Driven, Design-Led, Future-Focused',
+'⬛ Fresher`s Mind, Energetic and Motivated', 
+'⬛ From MS Office to Microcontrollers – Skills That Scale',
+'⬛ Photography & Python – Seeing the World Differently',
+'⬛ Building the Next Generation of Smart Systems',
+'⬛ Your Next Tech Hire: Grounded, Skilled, and Innovation-Fueled',
+'⬛ Trained in Labs, Tested in Real Life, Tuned for the Future',
+'⬛ Turning Code into Solutions | ML Enthusiast | IoT Explorer | ETE Graduate',
+'⬛ From Circuit Boards to Cloud Dashboards – I Build What Matters',
+'⬛ Fresh Mind. Future Tech. Focused Delivery',
+'⬛ B.Tech in ETE | Building Smarter Systems with AI, IoT & Heart',
+'⬛ Powering Tomorrow’s Tech: ML Models, Smart Devices & Real-World Impact',
+'⬛ Where Electronics Meets Intelligence – Engineer. Innovator. Achiever',
+'⬛ Crafting Smart Systems That Think, Sense & Deliver',
+'⬛ Graduate ETE Engineer | IoT Dev | AI Learner | Project-Driven Problem Solver',
+'⬛ Bridging Embedded Systems and Cloud Intelligence – One Project at a Time',
+'⬛ Making Electronics Talk with Intelligence and Code',
+'⬛ Merging Hardware and Software into Seamless Experiences',
+'⬛ Engineer by Degree, Innovator by Passion',
+'⬛ Driving Change with Code, Circuits, and Curiosity',
+'⬛ Smart Devices. Smarter Solutions. Driven by Creativity',
+'⬛ From Sensor Data to Strategic Insights – I Engineer It All',
+'⬛ Future-Ready Engineer with a Passion for Practical AI & IoT',
+'⬛ Designing Tech That Works Smarter, Not Harder',
+'⬛ Engineer Empowered by AI Tools, IoT, and Pure Determination',
+'⬛ From MATLAB Models to Real-World IoT with ESP8266 & ESP32',
+'⬛ Bridging Automation and Empathy – Engineering with Purpose',
+'⬛ Firebase to Frontend – Building Smarter Apps with Vibe Coding',
+'⬛ Merging LabVIEW Logic with Creative Vision',
+'⬛ Professional, Punctual, and Powered by Python',
+'⬛ Turning Data into Decisions with Power BI & Patience',
+'⬛ Arduino, Android, and Authentic Insight – That’s Me',
+'⬛ Efficient with Simulink, Effective with Strategy',
+'⬛ From Proteus Simulations to Perfected Projects',
+'⬛ Soft Skills Hardwired – Organized, Insightful, Ready',
+'⬛ Web Developer with an Eye for Design and Detail',
+'⬛ Tech That Talks – Packet Tracer to Python',
+'⬛ Smart Systems Start with Subhranil – IoT | ML | Empathy',
+'⬛ Mastering CC3200, MSP430 & Time Management',
+'⬛ Creativity Meets Code – Canva, Android Studio & More',
+'⬛ From Circuits to Cloud – I Engineer Every Layer',
+'⬛ Empathetic Engineer with a Flair for Problem Solving',
+'⬛ Prompt Engineering + Real Engineering = Subhranil’s Edge',
+'⬛ Collaborative Builder with Command of Machine Learning',
+'⬛ Designing the Future with ESP32, Firebase & Foresight',
+'⬛ Raspberry Pi Projects Built with Passion & Precision',
+'⬛ ML, MS Office & Meaningful Impact – Let`s Go!',
+'⬛ Attention to Detail, Powered by Tools That Deliver',
+'⬛ Smarter Automation with IoT, Arduino & Active Listening',
+'⬛ Organized Mind, Creative Code – That`s the Balance I Bring',
+'⬛ Time Managed. Code Optimized. Goals Achieved.',
+'⬛ Where Vibe Coding Meets Vision and Value',
+'⬛ I Engineer Machines That Think and Systems That Speak',
+'⬛ At the Crossroads of AI, IoT, and Purpose-Driven Engineering',
+'⬛ Code, Connect, Create, Subhranil`s Way Forward',
+'⬛ Engineering Ideas into Impact IoT AI and Innovation at the Core'
+
+
+];
+        let textIndex = 1;
+
+        async function typeWriter() {
+            const currentText = texts[textIndex];
+            
+            // Type the text
+            for (let i = 1; i <= currentText.length; i++) {
+                typewriter.textContent = currentText.slice(0, i);
+                await new Promise(resolve => setTimeout(resolve, 50)); // Slow typing (100ms per letter)
+            }
+
+            // Hold for 2 seconds
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Erase the text
+            for (let i = currentText.length -1; i >= 1; i--) {
+                typewriter.textContent = currentText.slice(0, i);
+                await new Promise(resolve => setTimeout(resolve, 10)); // Fast erasing (50ms per letter)
+            }
+
+            // Move to next text
+            textIndex = (textIndex + 1) % texts.length;
+
+            // Start next cycle
+            setTimeout(typeWriter, 1);
+        }
+
+        // Start the animation
+        typeWriter();
+    </script>
+
+
+
+
+//Project Category javascript code
+
+
+
+<script>
+  let currentCategory = 'ALL';
+
+  function filterProjects(category) {
+    currentCategory = category;
+    const projectCards = document.querySelectorAll('.project-card');
+
+    projectCards.forEach(card => {
+      const cardCategory = card.getAttribute('category') || 'ALL';
+
+      if (category === 'ALL') {
+        // Restore scroll effect
+        card.style.display = 'block';
+        card.setAttribute('data-aos', 'zoom-in');
+        card.style.opacity = '';
+        card.style.transform = '';
+      } else if (cardCategory.toUpperCase() === category.toUpperCase()) {
+        // Show instantly without scroll animation
+        card.style.display = 'block';
+        card.removeAttribute('data-aos');
+        card.style.opacity = '1';
+        card.style.transform = 'none';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
 </body>
 
 
