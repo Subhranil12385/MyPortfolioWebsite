@@ -209,16 +209,7 @@
     }
 
 
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 1px;
-      bottom: -2px;
-      left: 0;
-      background: cyan;
-      transition: width 0.3s;
-    }
+
 
 
     nav a:hover::after {
@@ -250,18 +241,6 @@
     }
 
 
-    .article-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(29, 78, 255, 0.2));
-      border: none;
-      backdrop-filter: blur(5px);
-      border-radius: 10px;
-      padding: 1rem;
-      margin: 1rem 0;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-    }
 
 
     .achievement-card {
@@ -292,18 +271,6 @@
     }
 
 
-    .internship-card {
-      background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(0, 0, 139, 0.2));
-      border: none;
-      backdrop-filter: blur(5px);
-      border-radius: 10px;
-      padding: 1rem;
-      margin: 1rem 0;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-    }
 
 
     .research-card {
@@ -320,16 +287,14 @@
     }
 
 
-    .project-card:hover, .article-card:hover, .achievement-card:hover, .certification-card:hover, .internship-card:hover, .research-card:hover {
+    .project-card:hover .achievement-card:hover, .certification-card:hover, .research-card:hover {
       transform: scale(1.05);
       box-shadow: 0 0 30px rgba(0, 255, 255, 1);
     }
 
     .project-card:hover .project-description,
-    .article-card:hover .article-description,
     .achievement-card:hover .achievement-description,
     .certification-card:hover .certification-description,
-    .internship-card:hover .internship-description,
     .research-card:hover .research-description {
       max-height: 250px;
       opacity: 1;
@@ -337,7 +302,7 @@
     }
 
 
-    .project-description, .article-description, .achievement-description, .certification-description, .internship-description, .research-description {
+    .project-description, .article-description, .achievement-description, .certification-description, .research-description {
       max-height: 0;
       opacity: 0;
       font-size: 0.8rem;
@@ -349,10 +314,8 @@
 
 
     .project-card .card-buttons,
-    .article-card .card-buttons,
     .achievement-card .card-buttons,
     .certification-card .card-buttons,
-    .internship-card .card-buttons,
     .research-card .card-buttons {
       visibility: hidden;
       opacity: 0;
@@ -366,10 +329,9 @@
 
 
     .project-card:hover .card-buttons,
-    .article-card:hover .card-buttons,
     .achievement-card:hover .card-buttons,
     .certification-card:hover .card-buttons,
-    .internship-card:hover .card-buttons,
+ 
     .research-card:hover .card-buttons {
       visibility: visible;
       opacity: 1;
@@ -377,7 +339,7 @@
     }
 
 
-    .project-card h3, .article-card h3, .achievement-card h3, .certification-card h3, .internship-card h3, .research-card h3 {
+    .project-card h3, .achievement-card h3, .certification-card h3, .research-card h3 {
       font-size: 1.3rem;
     }
 
@@ -482,8 +444,8 @@
       justify-content: center;
       gap: 0.5rem;
       transition: opacity 0.5s ease; box-shadow 0.3s ease;
-  font-size: 32px; /* Increase this number to make icons larger */
-  margin: 50 15px;
+  font-size: 100px; /* Increase this number to make icons larger */
+  margin: 50 50px;
   color: cyan;
 
     }
@@ -495,13 +457,13 @@
   width: 60px;
   height: 60px;
       transition: transform 0.3s;
-  margin: 50 15px;
+  margin: 100 50px;
     }
 
 
     .social-icons a:hover {
       color: #fff;
-      transform: scale(1.3);
+      transform: scale(2.0);
     }
 
 
@@ -769,7 +731,7 @@
     }
 
 
-    .internship-grid, .research-grid {
+    .research-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 1rem;
@@ -841,34 +803,34 @@
         padding: 4rem 2rem;
         max-width: 1200px;
       }
-      .project-card, .article-card, .achievement-card, .certification-card, .internship-card, .research-card {
+      .project-card .achievement-card, .certification-card, .research-card {
         border-radius: 15px;
         padding: 2rem;
         margin: 1rem 0.5rem;
       }
-      .project-description, .article-description, .achievement-description, .certification-description, .internship-description, .research-description {
+      .project-description, .achievement-description, .certification-description, .research-description {
         font-size: 0.9rem;
       }
       .project-card:hover .project-description,
-      .article-card:hover .article-description,
       .achievement-card:hover .achievement-description,
       .certification-card:hover .certification-description,
-      .internship-card:hover .internship-description,
       .research-card:hover .research-description {
         max-height: 200px;
         padding-top: 1rem;
       }
       .project-card:hover .card-buttons,
-      .article-card:hover .card-buttons,
       .achievement-card:hover .card-buttons,
       .certification-card:hover .card-buttons,
-      .internship-card:hover .card-buttons,
       .research-card:hover .card-buttons {
         visibility: visible;
         opacity: 1;
         padding-top: 1rem;
       }
-      .project-card h3, .article-card h3, .achievement-card h3, .certification-card h3, .internship-card h3, .research-card h3 {
+
+
+
+
+      .project-card h3, .achievement-card h3, .certification-card h3, .research-card h3 {
         font-size: 1.5rem;
       }
       .button {
@@ -958,7 +920,7 @@
       .firefly {
         filter: blur(3px);
       }
-      .internship-grid, .research-grid {
+       .research-grid {
         grid-template-columns: repeat(2, 1fr);
       }
       .article-grid, .project-grid, .certification-grid {
@@ -1338,17 +1300,63 @@ color: #fff
   left: 0;
 }
 
-
-
-
-
-
-
   </style>
 
 
 
 
+
+  <style>
+
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .article-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(200,200,255,0.1));
+      border-radius: 12px;
+      padding: 1.5rem 1rem;
+      box-shadow: 0 0 15px rgba(0,255,255,0.2);
+      transition: all 0.4s ease;
+    }
+
+    .article-card:hover {
+      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(200,200,255,0.2));
+      border-radius: 50px;
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0,255,255,0.5);
+    }
+
+    .card-buttons {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .button, .article-button {
+      padding: 0.7rem 1.5rem;
+      background: transparent;
+      border: 2px solid #fff;
+      color: white;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+
+    .article-card:hover .article-button {
+     background: linear-gradient(to right, #ff00cc, #3333ff);
+      color: white;
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #fff;
+      border-radius: 8px;
+    }
+  
+
+ </style>
 
  <style>
 
@@ -1488,6 +1496,82 @@ color: #fff
 
 
 
+<style>
+    .internship-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(350px, 1fr));
+      gap: 3rem;
+    }
+
+    .flip-card {
+      background: transparent;
+      perspective: 1000px;
+    }
+
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front, .flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 15px rgba(0,255,255,0.3);
+    }
+
+    .flip-front {
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(0, 0, 139, 0.2));
+      backdrop-filter: blur(5px);
+    }
+
+    .flip-back {
+      background: rgba(0, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      transform: rotateY(180deg);
+    }
+
+    .card-buttons {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+
+    .button {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      border: none;
+      background: linear-gradient(to right, #ff00cc, #3333ff);
+      color: white;
+      box-shadow: 0 0 15px #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #0ff;
+    }
+ 
+ </style>
+
+
 
 
 
@@ -1510,7 +1594,7 @@ color: #fff
 
 
   <nav id="nav">
-    <a href="#home" class="nav-link">🏡Home</a>
+    <a href="#home" class="nav-link active">🏡Home</a>
     <a href="#about" class="nav-link">👨‍🔧About Me</a>
     <a href="#qualifications" class="nav-link">🏫Qualifications</a>
     <a href="#projects" class="nav-link">🔬Projects</a>
@@ -1518,9 +1602,10 @@ color: #fff
     <a href="#articles" class="nav-link">🖋️Articles</a>
     <a href="#internships" class="nav-link">🧑🏻‍💻Internships</a>
     <a href="#certifications" class="nav-link">📜Certifications</a>
-    <a href="#achievements" class="nav-link">📜Achievements</a>
-    <a href="#contact" class="nav-link">📞Contact Me</a>
+    <a href="#achievements" class="nav-link" >📜Achievements</a>
+    <a href="#contact" class="nav-link" >📞Contact Me</a>
   </nav>
+
 
 
   <section id="home" data-aos="fade-up">
@@ -1581,7 +1666,6 @@ color: #fff
   <div class="stat-card">
     <span class="number" data-target="10">0</span><span class="plus">+</span>
     <p>Skills</p>
-  </div>
   </div>
 </div>
 
@@ -2033,101 +2117,106 @@ color: #fff
 
   <section id="articles" data-aos="fade-up">
     <h2 class="rainbow-glow" data-aos="fade-up" id="articles-title">My Articles🖋️</h2>
-    <div class="article-grid">
-      <div class="article-card" data-aos="zoom-in" id="art1">
-        <h3>Exploring Firebase Studio: A New Frontier in AI-Powered App Developments</h3>
-        <div class="article-description"></div>
-        <div class="card-buttons">
-          <a href="https://www.researchgate.net/publication/390729365_Exploring_Firebase_Studio-_A_New_Frontier_in_AI-Powered_App_Developments" target="_blank"><button class="button">Read Article</button></a>
-        </div>
+  <div class="article-grid">
+    <div class="article-card">
+      <h3>Exploring Firebase Studio</h3>
+      <div class="card-buttons">
+        <a href="https://www.researchgate.net/publication/390729365_Exploring_Firebase_Studio-_A_New_Frontier_in_AI-Powered_App_Developments" target="_blank"><button class="article-button">Read Article</button></a>
       </div>
-      <div class="article-card" data-aos="zoom-in" id="art2">
-        <h3>Comparative Analysis of AI Reports: Balancing Rigor, Narrative, and Engagement</h3>
-        <div class="article-description"></div>
-        <div class="card-buttons">
-          <a href="https://www.researchgate.net/publication/390421012_Comparative_Analysis_of_AI_Reports_Balancing_Rigor_Narrative_and_Engagement" target="_blank"><button class="button">Read Article</button></a>
-        </div>
-      </div>
-      <div class="article-card" data-aos="zoom-in" id="art3">
-        <h3>Higher Education and PSU Opportunities for a GATE English XH-C2 Qualifier with a BTech Background</h3>
-        <div class="article-description"></div>
-        <div class="card-buttons">
-          <a href="https://www.researchgate.net/publication/390060714_I_have_cleared_GATE_but_in_English_Subject_Now_What_Higher_Education_and_PSU_Opportunities_for_a_GATE_English_XH-C2_Qualifier_with_a_BTech_Background" target="_blank"><button class="button">Read Article</button></a>
-        </div>
-      </div>
-      <div class="article-card" data-aos="zoom-in" id="art4">
-        <h3>Can AI take over software developers job?</h3>
-        <div class="article-description"></div>
-        <div class="card-buttons">
-          <a href="https://www.researchgate.net/publication/389038945_Can_AI_take_over_software_developers_job_A_study_to_find_the_capabilities_of_current_AI_Agents_in_development_of_web_app" target="_blank"><button class="button">Read Article</button></a>
-        </div>
-      </div>
-      <div class="article-card" data-aos="zoom-in" id="art5">
-        <h3>ChatGPT vs DeepSeek</h3>
-        <div class="article-description"></div>
-        <div class="card-buttons">
-          <a href="https://www.researchgate.net/publication/388628850_ChatGPT_vs_DeepSeek" target="_blank"><button class="button">Read Article</button></a>
-        </div>
-      </div>
-      <div class="article-card" data-aos="zoom-in" id="art6">
-        <h3>The History of HEMT</h3>
-        <div class="article-description"></div>
-        <div class="card-buttons">
-          <a href="https://www.researchgate.net/publication/388469567_The_History_of_HEMT" target="_blank"><button class="button">Read Article</button></a>
-        </div>
-      </div>
-      <div class="article-card" data-aos="zoom-in" id="art7">
-        <h3>IoT-Based Motion Detection Alarm System</h3>
-        <div class="article-description"></div>
-        <div class="card-buttons">
-          <a href="https://www.researchgate.net/publication/387111957_IoT-Based_Motion_Detection_Alarm_System_From_Concept_to_Completion_with_Iterative_Design_and_Troubleshooting" target="_blank"><button class="button">Read Article</button></a>
-        </div>
-      </div>
-      <div class="article-card" data-aos="zoom-in" id="art8">
-        <h3>Interfacing MyDAQ with LabVIEW and uploading realtime data</h3>
-        <div class="article-description"></div>
-        <div class="card-buttons">
-          <a href="https://www.researchgate.net/publication/386534796_Interfacing_MyDAQ_with_LabVIEW_and_uploading_realtime_data_to_Google_Firebase" target="_blank"><button class="button">Read Article</button></a>
-        </div>
-      </div>
-      <div class="article-card" data-aos="zoom-in" id="art9">
-        <h3>Extracting the Heartbeat out of a PIR Sensor</h3>
-        <div class="article-description"></div>
-        <div class="card-buttons">
-          <a href="https://www.researchgate.net/publication/386534063_Extracting_the_Heartbeat_out_of_a_PIR_Sensor" target="_blank"><button class="button">Read Article</button></a>
-        </div>
-      </div>
-      <div class="article-card" data-aos="zoom-in" id="art10">
-        <h3>From Drawer to Dashboards: A Pragmatic Guide to Smart Engineering</h3>
-        <div class="article-description"></div>
-        <div class="card-buttons">
-          <a href="https://www.researchgate.net/publication/386324981_From_Drawer_to_Dashboards_A_Pragmatic_Guide_to_Smart_Engineering_-A_Life_Lesson_from_ESP8266_A_Journey_Beyond_Perfection" target="_blank"><button class="button">Read Article</button></a>
-        </div>
-      </div>
-
-
-
-      <div class="article-card" data-aos="zoom-in" id="art10">
-        <h3>Recruitment Strategies and Study Material for Tata Semiconductor Plant, Assam</h3>
-        <div class="article-description"></div>
-        <div class="card-buttons">
-          <a href="https://www.researchgate.net/publication/391444536_Recruitment_Strategies_and_Study_Material_for_Tata_Semiconductor_Plant_Assam" target="_blank"><button class="button">Read Article</button></a>
-        </div>
-      </div>
-
-
-
-
-      <div class="article-card" data-aos="zoom-in" id="art10">
-        <h3>Bolt Vs Lovable - Who Can Redesign Better?</h3>
-        <div class="article-description"></div>
-        <div class="card-buttons">
-          <a href="https://www.researchgate.net/publication/391849450_Bolt_Vs_Lovable_-_Who_Can_Redesign_Better" target="_blank"><button class="button">Read Article</button></a>
-        </div>
-      </div>
-	</div>
     </div>
+    <div class="article-card">
+      <h3>Comparative Analysis of AI Reports</h3>
+      <div class="card-buttons">
+        <a href="https://www.researchgate.net/publication/390421012_Comparative_Analysis_of_AI_Reports_Balancing_Rigor_Narrative_and_Engagement" target="_blank"><button class="article-button">Read Article</button></a>
+      </div>
+    </div>
+    <div class="article-card">
+      <h3>Higher Education and PSU for GATE English</h3>
+      <div class="card-buttons">
+        <a href="https://www.researchgate.net/publication/390060714_I_have_cleared_GATE_but_in_English_Subject_Now_What_Higher_Education_and_PSU_Opportunities_for_a_GATE_English_XH-C2_Qualifier_with_a_BTech_Background" target="_blank"><button class="article-button">Read Article</button></a>
+      </div>
+    </div>
+    <div class="article-card">
+      <h3>Can AI Replace Software Developers?</h3>
+      <div class="card-buttons">
+        <a href="https://www.researchgate.net/publication/389038945_Can_AI_take_over_software_developers_job_A_study_to_find_the_capabilities_of_current_AI_Agents_in_development_of_web_app" target="_blank"><button class="article-button">Read Article</button></a>
+      </div>
+    </div>
+    <div class="article-card">
+      <h3>ChatGPT vs DeepSeek</h3>
+      <div class="card-buttons">
+        <a href="https://www.researchgate.net/publication/388628850_ChatGPT_vs_DeepSeek" target="_blank"><button class="article-button">Read Article</button></a>
+      </div>
+    </div>
+    <div class="article-card">
+      <h3>The History of HEMT</h3>
+      <div class="card-buttons">
+        <a href="https://www.researchgate.net/publication/388469567_The_History_of_HEMT" target="_blank"><button class="article-button">Read Article</button></a>
+      </div>
+    </div>
+    <div class="article-card">
+      <h3>IoT-Based Motion Detection Alarm</h3>
+      <div class="card-buttons">
+        <a href="https://www.researchgate.net/publication/387111957_IoT-Based_Motion_Detection_Alarm_System_From_Concept_to_Completion_with_Iterative_Design_and_Troubleshooting" target="_blank"><button class="article-button">Read Article</button></a>
+      </div>
+    </div>
+    <div class="article-card">
+      <h3>MyDAQ with LabVIEW + Firebase</h3>
+      <div class="card-buttons">
+        <a href="https://www.researchgate.net/publication/386534796_Interfacing_MyDAQ_with_LabVIEW_and_uploading_realtime_data_to_Google_Firebase" target="_blank"><button class="article-button">Read Article</button></a>
+      </div>
+    </div>
+    <div class="article-card">
+      <h3>Heartbeat Detection with PIR Sensor</h3>
+      <div class="card-buttons">
+        <a href="https://www.researchgate.net/publication/386534063_Extracting_the_Heartbeat_out_of_a_PIR_Sensor" target="_blank"><button class="article-button">Read Article</button></a>
+      </div>
+    </div>
+    <div class="article-card">
+      <h3>From Drawer to Dashboards</h3>
+      <div class="card-buttons">
+        <a href="https://www.researchgate.net/publication/386324981_From_Drawer_to_Dashboards_A_Pragmatic_Guide_to_Smart_Engineering_-A_Life_Lesson_from_ESP8266_A_Journey_Beyond_Perfection" target="_blank"><button class="article-button">Read Article</button></a>
+      </div>
+    </div>
+    <div class="article-card">
+      <h3>Tata Semiconductor Plant Prep</h3>
+      <div class="card-buttons">
+        <a href="https://www.researchgate.net/publication/391444536_Recruitment_Strategies_and_Study_Material_for_Tata_Semiconductor_Plant_Assam" target="_blank"><button class="article-button">Read Article</button></a>
+      </div>
+    </div>
+    <div class="article-card">
+      <h3>Bolt Vs Lovable Design</h3>
+      <div class="card-buttons">
+        <a href="https://www.researchgate.net/publication/391849450_Bolt_Vs_Lovable_-_Who_Can_Redesign_Better" target="_blank"><button class="article-button">Read Article</button></a>
+      </div>
+    </div>
+  </div>
   </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2136,57 +2225,103 @@ color: #fff
   <section id="internships" data-aos="fade-up">
     <h2 class="rainbow-glow" data-aos="fade-up" id="internships-title">My Internships🧑🏻‍💻</h2>
     <div class="internship-grid">
-      <div class="internship-card" data-aos="zoom-in" id="int1">
-        <h3>Center for Development of Advanced Computing - Industrial Internship</h3>
-        <div class="internship-description">Worked in a team of 8 members and constructed the best CNN model for a Drone Detection System.</div>
-        <div class="card-buttons">
-          <a href="https://drive.google.com/file/d/1i0S0OXzmYgxc5O-J0XEaKbxeuS56XdKR/view?usp=drivesdk" target="_blank"><button class="button">View Certificate</button></a>
+    <div class="internship-card flip-card">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <h3>CDAC</h3>
+          <p>Industrial Internship</p>
+        </div>
+        <div class="flip-back">
+          <p class="internship-description">Worked in a team of 8 members and constructed the best CNN model for a Drone Detection System.</p>
+          <div class="card-buttons">
+            <a href="https://drive.google.com/file/d/1i0S0OXzmYgxc5O-J0XEaKbxeuS56XdKR/view?usp=drivesdk" target="_blank"><button class="button">Certificate</button></a>
+          </div>
         </div>
       </div>
-      <div class="internship-card" data-aos="zoom-in" id="int2">
-        <h3>National Institute of Electronics and Information Technology - Academic Internship</h3>
-        <div class="internship-description">Developed a stroke prediction algorithm with 5 models and tested using 6 matrices.</div>
-        <div class="card-buttons">
-          <a href="https://drive.google.com/file/d/1CqrMLWloHSxHZjWLIASlGfbelj-zW4Xn/view?usp=drivesdk" target="_blank"><button class="button">View Certificate</button></a>
-        </div>
-      </div>
-      <div class="internship-card" data-aos="zoom-in" id="int3">
-        <h3>Indian Institute of Technology - Academic Internship</h3>
-        <div class="internship-description">Annualization of events in over 100 short and long stories and replicated baseline models for NLP.</div>
-        <div class="card-buttons">
-          <a href="https://drive.google.com/file/d/17Bt-XAr3dPkFuPgOURz2UoRG43Vh9ECF/view?usp=drivesdk" target="_blank"><button class="button">View Certificate</button></a>
-        </div>
-      </div>
-      <div class="internship-card" data-aos="zoom-in" id="int4">
-        <h3>Techgyan - Online Internship</h3>
-        <div class="internship-description">Completed an online internship with Techgyan, focusing on advanced technical skills.</div>
-        <div class="card-buttons">
-          <a href="https://drive.google.com/drive/folders/1NoYWs2OaTN6N1bskUJlq5Xzt6KbkuQOY" target="_blank"><button class="button">View Certificate</button></a>
-        </div>
-      </div>
-      <div class="internship-card" data-aos="zoom-in" id="int5">
-        <h3>Social Internship</h3>
-        <div class="internship-description">Comprehensive study on the effect of Covid-19 pandemic in India. Survey conducted on more than 150 people and NGOs. Shortcomings were analyzed.</div>
-        <div class="card-buttons">
-          <a href="https://drive.google.com/file/d/1PMXj5YsQxHELArjOtzsIsLIKvCnd5Oeo/view?usp=drivesdk" target="_blank"><button class="button">View Certificate</button></a>
-        </div>
-      </div>
-
-
-<div class="internship-card" data-aos="zoom-in" id="int5">
-        <h3>15 Days Online Internship from Space Robotics</h3>
-        <div class="internship-description">Built a strong foundation on various robotics equipments like Sensors, Actuators, Motor Driver, Arduino, RF and Bluetooth controller etc.</div>
-        <div class="card-buttons">
-          <a href="https://drive.google.com/file/d/1EOFD5p_Zm_aJe279uT6byK9e71l5G4BM/view?usp=drivesdk" target="_blank"><button class="button">View Certificate</button></a>
-        </div>
-      </div>
-
-
-
-
-
-
     </div>
+
+    <div class="internship-card flip-card">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <h3>NIELIT</h3>
+          <p>Academic Internship</p>
+        </div>
+        <div class="flip-back">
+          <p class="internship-description">Developed a stroke prediction algorithm with 5 models and tested using 6 matrices.</p>
+          <div class="card-buttons">
+            <a href="https://drive.google.com/file/d/1CqrMLWloHSxHZjWLIASlGfbelj-zW4Xn/view?usp=drivesdk" target="_blank"><button class="button">Certificate</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="internship-card flip-card">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <h3>IIT Guwahati</h3>
+          <p>Academic Internship</p>
+        </div>
+        <div class="flip-back">
+          <p class="internship-description">Annualization of events in over 100 short and long stories and replicated baseline models for NLP.</p>
+          <div class="card-buttons">
+            <a href="https://drive.google.com/file/d/17Bt-XAr3dPkFuPgOURz2UoRG43Vh9ECF/view?usp=drivesdk" target="_blank"><button class="button">Certificate</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="internship-card flip-card">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <h3>Techgyan</h3>
+          <p>Online Internship</p>
+        </div>
+        <div class="flip-back">
+          <p class="internship-description">Completed an online internship with Techgyan, focusing on advanced technical skills.</p>
+          <div class="card-buttons">
+            <a href="https://drive.google.com/drive/folders/1NoYWs2OaTN6N1bskUJlq5Xzt6KbkuQOY" target="_blank"><button class="button">Certificate</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="internship-card flip-card">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <h3>Covid-19 Survey-Based Research</h3>
+          <p>Social Internship </p>
+        </div>
+        <div class="flip-back">
+          <p class="internship-description">Study on the effect of Covid-19 pandemic in India through surveys of 150+ people and NGOs.</p>
+          <div class="card-buttons">
+            <a href="https://drive.google.com/file/d/1PMXj5YsQxHELArjOtzsIsLIKvCnd5Oeo/view?usp=drivesdk" target="_blank"><button class="button">Certificate</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="internship-card flip-card">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <h3>Space Robotics</h3>
+          <p>15-Day Online Internship</p>
+        </div>
+        <div class="flip-back">
+          <p class="internship-description">Learned robotics fundamentals including sensors, actuators, drivers, and wireless controllers.</p>
+          <div class="card-buttons">
+            <a href="https://drive.google.com/file/d/1EOFD5p_Zm_aJe279uT6byK9e71l5G4BM/view?usp=drivesdk" target="_blank"><button class="button">Certificate</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
   </section>
 
 
@@ -2280,7 +2415,7 @@ color: #fff
   <section id="contact" data-aos="fade-up">
     <h2 class="rainbow-glow" data-aos="fade-up" id="contact-title">Contact Me📞</h2>
     <p data-aos="fade-up" id="contact-name"><strong>Name:</strong> Subhranil Dey</p>
-    <p data-aos="fade-up" id="contact-email"><strong>Email:</strong> <a href="mailto:subhranildey2306@gmail.com" style="color: yellowgreen;">subhranildey2306@gmail.com</a></p>
+    <p data-aos="fade-up" id="contact-email"><strong>Email:</strong> <a href="mailto:subhhranilde@gmail.com" style="color: yellowgreen;">subhhranilde@gmail.com</a></p>
     <p data-aos="fade-up" id="contact-phone"><strong>Phone:</strong> +91-8720970982</p>
     <div class="social-icons" data-aos="fade-up" id="social-icons">
       <a href="https://www.linkedin.com/in/subhranildey2306" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -2293,8 +2428,16 @@ color: #fff
 
 
 
-
 <a href="#home" class="topbutton">Back to Top</a>
+<a href="#home" class="blank">  </a>
+<a href="#home" class="blank"> </a>
+<a href="#home" class="blank">  </a>
+<a href="#home" class="blank">  </a>
+<a href="#home" class="blank">  </a>
+<a href="#home" class="blank">  </a>
+<a href="#home" class="blank">  </a>
+<a href="#home" class="blank">  </a>
+
 
 <style>
 .topbutton {
@@ -2317,6 +2460,33 @@ color: #fff
       backdrop-filter: blur(4px);
     color: white;
 }
+</style>
+
+
+<style>
+.blank {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 20px;
+      background: transparent;
+      background-size: 400% 400%;
+      animation: rainbow 15s ease infinite;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-shadow: 0 0 10px #fff;
+      z-index: 2;
+      position: relative;
+      transition: opacity 0.1s ease;
+      opacity: 1;
+      backdrop-filter: blur(4px);
+    color: white;
+}
+
+
+
 
 #home h2 {
     font-size: 3em;
@@ -2351,7 +2521,7 @@ color: #fff
 
 
     const hoverSound = document.getElementById('hover-sound');
-    document.querySelectorAll('.project-card, .button, nav a, .article-card, .achievement-card, .certification-card, .skill-badge, .internship-card, .research-card').forEach(el => {
+    document.querySelectorAll('.project-card, .button, nav a, .achievement-card, .certification-card, .skill-badge, .research-card').forEach(el => {
       el.addEventListener('mouseenter', () => {
         hoverSound.currentTime = 0;
         hoverSound.play();
@@ -2470,41 +2640,12 @@ color: #fff
     window.addEventListener('scroll', function() {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * .8;
+      const scrolled = (winScroll / height) * 1.0;
       document.getElementById('progress-bar').style.width = scrolled + '%';
     });
   </script>
 
 
-
-
-
- <script>
-    const navLinks = document.querySelectorAll(".nav-link");
-    const sections = document.querySelectorAll("section");
-
-    function activateLinkOnScroll() {
-      let currentSectionId = "";
-
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 150;
-        const sectionHeight = section.offsetHeight;
-        if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
-          currentSectionId = section.getAttribute("id");
-        }
-      });
-
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === `#${currentSectionId}`) {
-          link.classList.add("active");
-        }
-      });
-    }
-
-    window.addEventListener("scroll", activateLinkOnScroll);
-    window.addEventListener("load", activateLinkOnScroll);
-  </script>
 
 
 
@@ -2514,8 +2655,7 @@ color: #fff
 
 
 <script>
-// for KPI counter card
-
+// for KPI counter
   const counters = document.querySelectorAll('.number');
   const speed = 2000; // lower = faster
 
@@ -2542,8 +2682,9 @@ color: #fff
 
 
 
-
 <script>
+
+// rings
 const ringIds = ["ring-red", "ring-green", "ring-blue", "ring-yellow"];
 
 ringIds.forEach(id => {
@@ -2662,11 +2803,13 @@ ringIds.forEach(id => {
 
 
 
- 
 
 
 
 <script>
+
+// project card category 
+
   let currentCategory = 'ALL';
 
   function filterProjects(category) {
@@ -2699,6 +2842,33 @@ ringIds.forEach(id => {
 
 
 
+
+
+
+<script>
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll("nav a");
+
+  function activateLink() {
+    let index = sections.length;
+
+    while (--index && window.scrollY + 100 < sections[index].offsetTop) {}
+
+    navLinks.forEach((link) => link.classList.remove("active"));
+
+    const currentId = sections[index]?.id;
+    const targetLink = document.querySelector(`nav a[href="#${currentId}"]`);
+
+    if (targetLink) {
+      targetLink.classList.add("active");
+    }
+  }
+
+  // Initial load trigger
+  window.addEventListener("load", activateLink);
+  // Update on scroll
+  window.addEventListener("scroll", activateLink);
+</script>
 
 
 
